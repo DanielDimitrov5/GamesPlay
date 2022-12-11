@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import CatalogPage from './components/GameCatalog/CatalogPage';
@@ -9,6 +9,14 @@ import Login from './components/Auth/Login';
 
 
 function App() {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     let [route, setRoute] = useState('/');
 
@@ -22,6 +30,14 @@ function App() {
 
     function navigationChangeHandler(path) {
         setRoute(path);
+    }
+
+    if(isMobile) {
+        return (
+        <div>
+            <h1>Still not anavailable for mobile divices</h1>
+        </div>
+        )
     }
 
     return (
