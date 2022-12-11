@@ -1,14 +1,10 @@
-function GameCard({
-  image,
-  categoty,
-  name,
-}) {
+function GameCard({game}) {
     return (
         <div className="allGames">
           <div className="allGames-info">
-            <img src={image} />
-            <h6>{categoty}</h6>
-            <h2>{name}</h2>
+            <img src={game.imageUrl} />
+            <h6>{game.category}</h6>
+            <h2>{game.title}</h2>
             <a href="#" className="details-button">Details</a>
           </div>
         </div>
