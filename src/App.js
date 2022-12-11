@@ -18,7 +18,6 @@ function App() {
         '/create-game': <CreateGame />,
         '/login': <Login />,
         '/register': <Register />,
-
     }
 
     function navigationChangeHandler(path) {
