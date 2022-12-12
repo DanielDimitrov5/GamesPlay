@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import GameCard from "./GameCard";
 import './CatalogPage.css'
+import { getAll } from '../../services/FetchData.js';
 
 function CatalogPage() {
 
@@ -12,8 +13,7 @@ function CatalogPage() {
         setLoading(true);
 
         setTimeout(() => {
-            fetch('http://localhost:3030/data/games?sortBy=_createdOn%20desc')
-                .then(response => response.json())
+            getAll()
                 .then(game => {
                     setGames(game);
                     setLoading(false);
@@ -21,7 +21,7 @@ function CatalogPage() {
                 .catch(error => {
                     console.log(error);
                 },);
-        }, 1000)
+        }, 250)
     }, []);
 
     if (loading) {
