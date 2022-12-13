@@ -6,7 +6,7 @@ import CatalogPage from './components/GameCatalog/CatalogPage';
 import CreateGame from './components/CreateGame';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
-import GameDetails from './components/GameDetails';
+import GameDetails from './components/GameCatalog/GameDetails';
 
 
 function App() {
