@@ -11,13 +11,13 @@ import GameDetails from './components/GameCatalog/GameDetails';
 
 function App() {
 
-    const [isMobile, setIsMobile] = useState(false);
+    // const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    // useEffect(() => {
+    //     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    //     window.addEventListener('resize', handleResize);
+    //     return () => window.removeEventListener('resize', handleResize);
+    // }, []);
 
     let [route, setRoute] = useState('/');
 
@@ -44,13 +44,13 @@ function App() {
         return routes[page];
     }
 
-    if (isMobile) {
-        return (
-            <div>
-                <h1>Still not anavailable for mobile divices</h1>
-            </div>
-        )
-    }
+    // if (isMobile) {
+    //     return (
+    //         <div>
+    //             <h1>Still not anavailable for mobile divices</h1>
+    //         </div>
+    //     )
+    // }
 
     return (
         <div id="box">
