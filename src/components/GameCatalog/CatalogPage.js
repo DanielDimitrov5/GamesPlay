@@ -13,11 +13,11 @@ function CatalogPage({ navigationChangeHandler }) {
         setLoading(true);
 
         const timeout = setTimeout(() => {
-            // Set games to if the function takes more than 7 seconds
+            // Set games to if the function takes more than 6 seconds
             setLoading(false);
-            alert("Server is down! Fake data!")
+            alert("Server is down!")
             setGames(minecraft); //fake data
-        }, 7000);
+        }, 6000);
 
         getAll()
             .then(game => {
