@@ -3,24 +3,37 @@ import { getGameById } from "../../services/FetchData";
 import Comment from "./Comment";
 import { useParams } from 'react-router-dom';
 import minecraft from "../GameCatalog/games/minecraft.json"
+import { v4 as idGenerator } from 'uuid';
 
 function GameDetails() {
     const id = useParams().id;
-    const [game, setGame] = useState({}); //
 
+    const [game, setGame] = useState({});
     const [inputValue, setInputValue] = useState('');
-
     const [comments, SetCommetns] = useState([]);
+    const[loading, setLoading] = useState(false);
 
     useEffect(() => {
+
+        setLoading(true);
+
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 4000)
 
         getGameById(id)
             .then(result => {
                 setGame(result);
+                clearTimeout(timer);
+
+                setLoading(false);
             })
             .catch(error => {
                 console.log(error);
                 setGame(minecraft[0]);
+                clearTimeout(timer);
+
+                setLoading(false);
             });
 
     }, [])
@@ -37,15 +50,22 @@ function GameDetails() {
         }
 
         const comment = (
-            <Comment inputValue={inputValue} />
+            <Comment key={idGenerator()} inputValue={inputValue} />
         )
-
+            console.log(comment.key)
         let commentsCollection = [comments];
         commentsCollection.push(comment);
 
         SetCommetns(commentsCollection);
 
         setInputValue('');
+    }
+
+
+    if (loading) {
+        return (
+            <div className="lds-circle"><div></div></div>
+        )
     }
 
     return (

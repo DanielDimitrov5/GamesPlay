@@ -15,7 +15,8 @@ function CatalogPage() {
         const timeout = setTimeout(() => {
             // Set games to if the function takes more than 6 seconds
             setLoading(false);
-            alert("Server is down!")
+
+            console.log("Server is down!")
 
             minecraft.fake = true;
             setGames(minecraft); //fake data
