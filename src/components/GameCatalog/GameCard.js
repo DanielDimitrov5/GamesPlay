@@ -1,22 +1,24 @@
-function GameCard({game, navigationChangeHandler}) {
+import { Link } from "react-router-dom";
 
-  function clickDetailHendler(e){
-    e.preventDefault();
+function GameCard({ game, navigationChangeHandler }) {
 
-        if(e.target.tagName === 'A'){
+    function clickDetailHendler(e) {
+        e.preventDefault();
+
+        if (e.target.tagName === 'A') {
             const url = new URL(e.target.href);
             navigationChangeHandler(url.pathname);
         }
-  }
+    }
 
     return (
         <div className="allGames">
-          <div className="allGames-info">
-            <img src={game.imageUrl} alt="no picture"/>
-            <h6>{game.category}</h6>
-            <h2>{game.title}</h2>
-            <a onClick={clickDetailHendler} href={`game/${game._id}`} className="details-button">Details</a>
-          </div>
+            <div className="allGames-info">
+                <img src={game.imageUrl} alt="no picture" />
+                <h6>{game.category}</h6>
+                <h2>{game.title}</h2>
+                <Link to={`game/${game._id}`} className="details-button">Details</Link>
+            </div>
         </div>
     );
 }

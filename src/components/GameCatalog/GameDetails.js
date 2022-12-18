@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getGameById } from "../../services/FetchData";
 import Comment from "./Comment";
+import { useParams } from 'react-router-dom';
+import minecraft from "../GameCatalog/games/minecraft.json"
 
-function GameDetails({ id }) {
-
-    const [game, setGame] = useState({});
+function GameDetails() {
+    const id = useParams().id;
+    const [game, setGame] = useState({}); //
 
     const [inputValue, setInputValue] = useState('');
 
     const [comments, SetCommetns] = useState([]);
 
-    getGameById(id)
-        .then(result => {
-            setGame(result);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+    useEffect(() => {
 
+        getGameById(id)
+            .then(result => {
+                setGame(result);
+            })
+            .catch(error => {
+                console.log(error);
+                setGame(minecraft[0]);
+            });
+
+    }, [])
 
     function handleChange(event) {
         setInputValue(event.target.value);
@@ -58,7 +64,7 @@ function GameDetails({ id }) {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     {comments.length > 0 ? <ul>{comments}</ul>
-                                         : <p className="no-comment">No comments.</p>
+                        : <p className="no-comment">No comments.</p>
                     }
                 </div>
                 <div className="buttons">
